@@ -23,6 +23,7 @@ import axios from 'axios';
       getAllPosts(){
         axios.get(this.store.ApiBaseUrl+'/posts').then((res) => {
           // console.log(res.data)
+          this.posts = res.data.results;
 
         });
       }
