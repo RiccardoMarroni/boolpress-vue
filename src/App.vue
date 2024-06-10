@@ -1,11 +1,35 @@
 <template>
   <h1 class="text-center">Ciao</h1>
   <i class="fa fa-solid fa-home"></i>
+  <ul>
+    <li  v-for="post in posts" :key="post.id">
+       {{ post.title }}
+    </li>
+  </ul>
 </template>
 
 <script>
+import {store} from './store';
+import axios from 'axios';
   export default {
-    name: 'App'
+    name: 'App',
+    data(){
+      return{
+        store,
+        posts:[]
+      }
+    },
+    methods:{
+      getAllPosts(){
+        axios.get(this.store.ApiBaseUrl+'/posts').then((res) => {
+          // console.log(res.data)
+
+        });
+      }
+    },
+    mounted(){
+      this.getAllPosts()
+    }
   }
 </script>
 
