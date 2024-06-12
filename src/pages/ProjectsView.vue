@@ -1,3 +1,18 @@
+<template>
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" :class="{'disabled' : currentpage <=1}" href="#">previos</a>
+        </li>
+        <li class="page-item" v-for="page in totalpage" :key="page">
+            <a class="page-link" :class="{ 'active' : currentpage == 1}" href="#">{{ page }}</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" :class="{'disabled' : currentpage > 2}" href="#">next</a>
+        </li>
+    </ul>
+</template>
+
+
 <script>
 import ProjectCard from '../Main/ProjectCard.vue';
 import axios from 'axios';
@@ -6,12 +21,14 @@ import { store } from '../../store';
 export default {
     name: 'ProjectsView',
     components: {
-        ProjectCard
+     ProjectCard
     },
     data() {
         return {
             store,
             projects: [],
+            currentPage: null,
+            totalPage: 0,
             loading: true
         }
     },
@@ -24,12 +41,6 @@ export default {
                 .catch(error => {
                     console.error(error);
                 })
-        },
-        nextPage(nextPageUrl) {
-            this.callApi(nextPageUrl);
-        },
-        prevPage(prevPageUrl) {
-            this.callApi(prevPageUrl);
         },
     },
     mounted() {
