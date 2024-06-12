@@ -16,7 +16,6 @@ export default {
     methods: {
         callSingleApi(url) {
             axios.get(url).then(response => {
-                /
                 this.project = response.data.project;
                 this.callSuccess = response.data.success;
                 this.loading = false;
