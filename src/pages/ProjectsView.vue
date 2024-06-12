@@ -42,6 +42,13 @@ export default {
                     console.error(error);
                 })
         },
+        nextPage() {
+            this.currentPage +=1;
+        },
+
+        prevPage() {
+          this.currentPage -=1;
+        },
     },
     mounted() {
         let url = this.store.base_url + this.store.projects_api_url;
